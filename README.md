@@ -65,9 +65,11 @@ service_provider_name = prompt.ask('Service provider name:')
 - Add Service Provider -- should we check if it is a valid phone number? it can take any phone number at th moment The adding service part of this is done too. Change up how to navigate and select stuff in the menu. Also need to fix the part that has empty select areas when you add a new service, a blank service provider can be made. 
 - Schedule Time Off -- we can't check if it works because schedule appointment doesn't works in the first place
 - View Schedule -- we can't check if it works because schedule appointment doesn't works in the first place
-
+   - we didn't have any valid services earlier.... this area actually works
+   
 ### What We Want To Get Done for 6/7/2019
 - Moving things from one folder to another folder -- because it was originally built in a way where there were two folders
 - Remove Service Provider -- blank continues fix
 - Schedule Appointment -- How to assign a service provider to a service, This area doesn't work.
 - An option to end the program without the bad UI.
+- Ask to enter their name because that's something someone thinks of when it comes to scheduling things
