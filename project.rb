@@ -1,10 +1,10 @@
 require 'tty-prompt'
-require_relative "files/Appointment"
-require_relative "files/DateTime"
-require_relative "files/Organization"
-require_relative "files/Service"
-require_relative "files/ServiceProvider"
-require_relative "files/AvailabilityBlock"
+require_relative "Appointment"
+require_relative "DateTime"
+require_relative "Organization"
+require_relative "Service"
+require_relative "ServiceProvider"
+require_relative "AvailabilityBlock"
 
 
 prompt = TTY::Prompt.new(active_color: :cyan)
