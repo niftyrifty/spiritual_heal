@@ -10,6 +10,7 @@ require_relative "AvailabilityBlock"
 prompt = TTY::Prompt.new(active_color: :cyan)
 org = Organization.new(prompt)
 
+
 commands = ["Add service", "Add service provider", "Remove service", "Remove service provider", 
 "List services", "List service providers", "Schedule appointment", "List appointments", 
 "Schedule time off", "View schedule"]

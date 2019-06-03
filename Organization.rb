@@ -145,7 +145,7 @@ class Organization
 
     def schedule_appointment()
       prompt = TTY::Prompt.new
-
+      client = prompt.ask("Client name: ")
       service_provider_name = prompt.select("Choose a service provider:", get_service_providers_array())
       service_provider = get_service_provider_by_name(service_provider_name)
 
@@ -169,7 +169,7 @@ class Organization
 
       appointment_time = Time.new(year, month, day, start_hour, start_minute)
       is_recurring = get_recurring_response()
-      client = prompt.ask("Client name: ")
+
 
       if(service_provider.timeslot_is_available?(appointment_time, service.duration, is_recurring))
         appt = Appointment.new(appointment_time, service, client, is_recurring)
