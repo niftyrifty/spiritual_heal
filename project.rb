@@ -7,7 +7,8 @@ require_relative "ServiceProvider"
 require_relative "AvailabilityBlock"
 
 
-prompt = TTY::Prompt.new(active_color: :cyan)
+#prompt = TTY::Prompt.new(active_color: :cyan)
+prompt = TTY::Prompt.new(interrupt: :exit)
 org = Organization.new(prompt)
 
 commands = ["Add service", "Add service provider", "Remove service", "Remove service provider", 
@@ -15,7 +16,7 @@ commands = ["Add service", "Add service provider", "Remove service", "Remove ser
 "Schedule time off", "View schedule"]
 
 # response = (prompt.select("Choose a command...", org.list_commands())).to_s()
-response = (prompt.select("Choose a command...", commands, per_page: 10)).to_s()
+response = (prompt.select("Please choose a command... (press 'control-c' to quit)", commands, per_page: 10)).to_s()
 
 while (response != "close")
     case response
