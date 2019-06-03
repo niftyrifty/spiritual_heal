@@ -70,3 +70,4 @@ service_provider_name = prompt.ask('Service provider name:')
 - Moving things from one folder to another folder -- because it was originally built in a way where there were two folders
 - Remove Service Provider -- blank continues fix
 - Schedule Appointment -- How to assign a service provider to a service, This area doesn't work.
+- An option to end the program without the bad UI.
