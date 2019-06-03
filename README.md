@@ -55,7 +55,7 @@ service_provider_name = prompt.ask('Service provider name:')
 
 
 # Week 2 Story
-##Inherited project: Rifty, Jessica & Tatiana
+## Inherited project: Rifty, Jessica & Tatiana
 
 ### What Is Done
 - Add Services 
