@@ -17,7 +17,25 @@ class Organization
 
     def add_service()
         prompt = TTY::Prompt.new
-        service_name = prompt.ask("Name of the service: ")
+        # response = true
+        # while response do
+        #   service_name = prompt.ask("Name of the service: ")
+        #   if service_name == nil
+        #     puts "Error: Invalid Response. Please try again. "
+        #     line_break()
+        #   end
+        #   else
+        #     return
+        #   end
+        # end
+
+        # if service_name == nil
+        #   puts "Error: Invalid Response. Please try again. "
+        #   line_break()
+        #   service_name = prompt.ask("Name of the service: ")
+        # end
+
+
 
         if(service_already_exists?(service_name))
           puts "Error: Service Already Exists"
