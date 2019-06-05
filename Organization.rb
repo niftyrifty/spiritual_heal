@@ -213,6 +213,14 @@ class Organization
       appointment_time = Time.new(year, month, day, start_hour, start_minute)
       is_recurring = get_recurring_response()
       client = prompt.ask("Client name: ")
+      while true
+        if client != nil
+          break
+        else
+          puts "Error: Not a valid name. Please enter a valid name below. "
+          client = prompt.ask("Client name: ")
+        end
+      end
 
       if(service_provider.timeslot_is_available?(appointment_time, service.duration, is_recurring))
         appt = Appointment.new(appointment_time, service, client, is_recurring)
@@ -294,6 +302,16 @@ class Organization
 
       block_time = Time.new(year, month, day, start_hour, start_minute)
       block_duration = prompt.ask("Duration of the block (in hours): ")
+      while true
+        if block_duration != nil
+          break
+        else
+          puts "Error: Not a valid duration. Please enter a valid duration below. "
+          block_duration = prompt.ask("Duration of the block (in hours): ")
+        end
+      end
+
+
       is_recurring = get_recurring_response()
 
       new_block = AvailabilityBlock.new(block_time, block_duration, is_recurring)
