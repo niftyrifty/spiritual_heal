@@ -395,13 +395,61 @@ class Organization
     def get_date_response(view_sched)
       prompt = TTY::Prompt.new
       if (!view_sched)
-        month = prompt.ask("Month of appointment (ex. '4'): ")
+        month = prompt.ask("Month of appointment(ex. '4'): ")
+        while true
+          if month != nil
+            break
+          else
+            puts "Error: Not a valid month. Please enter a valid month below. "
+            month = prompt.ask("Month of appointment (ex. '4'): ")
+          end
+        end
         day = prompt.ask("Date of appointment: ")
-        year = prompt.ask("Year of appointment: ")
+        while true
+          if day != nil
+            break
+          else
+            puts "Error: Not a valid day. Please enter a valid day below. "
+            day = prompt.ask("Date of appointment : ")
+          end
+        end
+        year = prompt.ask("Year of appointment : ")
+        while true
+          if year != nil
+            break
+          else
+            puts "Error: Not a valid year. Please enter a valid year below. "
+            year = prompt.ask("Year of appointment : ")
+          end
+        end
       else
         month = prompt.ask("Month (ex. '4'): ")
+        while true
+          if month != nil
+            break
+          else
+            puts "Error: Not a valid month. Please enter a valid month below. "
+            month = prompt.ask("Month (ex. '4'): ")
+          end
+        end
         day = prompt.ask("Date: ")
+        while true
+          if day != nil
+            break
+          else
+            puts "Error: Not a valid day. Please enter a valid day below. "
+            day = prompt.ask("Date: ")
+          end
+        end
         year = prompt.ask("Year: ")
+        while true
+          if year != nil
+            break
+          else
+            puts "Error: Not a valid year. Please enter a valid year below. "
+            year = prompt.ask("Year: ")
+          end
+        end
       end
       return day, month, year
     end
@@ -410,8 +458,26 @@ class Organization
       prompt = TTY::Prompt.new
       if (if_appt)
         time_string = prompt.ask("Time of appointment (ex. '14:45'): ")
+        while true
+          if time_string != nil
+            break
+          else
+            puts "Error: Not a valid service duration. Please enter a valid service duration below. "
+            time_string = prompt.ask("Time of appointment (ex. '14:45'): ")
+          end
+        end
       else
+        # I don't understand why it is somewhat asked twice.
         time_string = prompt.ask("Time off start time (ex. '14:45'): ")
+        while true
+          if time_string != nil
+            break
+          else
+            puts "Error: Not a valid time. Please enter a valid time below. "
+            time_string = prompt.ask("Time off start time (ex. '14:45'): ")
+          end
+        end
+
       end
 
       time_string_array = time_string.split(':')
