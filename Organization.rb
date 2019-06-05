@@ -17,25 +17,16 @@ class Organization
 
     def add_service()
         prompt = TTY::Prompt.new
-        # response = true
-        # while response do
-        #   service_name = prompt.ask("Name of the service: ")
-        #   if service_name == nil
-        #     puts "Error: Invalid Response. Please try again. "
-        #     line_break()
-        #   end
-        #   else
-        #     return
-        #   end
-        # end
 
-        # if service_name == nil
-        #   puts "Error: Invalid Response. Please try again. "
-        #   line_break()
-        #   service_name = prompt.ask("Name of the service: ")
-        # end
-
-
+        service_name = prompt.ask("Name of the service: ")
+        while true
+          if service_name != nil
+            break
+          else
+            puts "Error: Not a valid service name. Please enter a valid service below. "
+            service_name = prompt.ask("Name of the service: ")
+          end
+        end
 
         if(service_already_exists?(service_name))
           puts "Error: Service Already Exists"
@@ -44,7 +35,24 @@ class Organization
         end
 
         service_price = prompt.ask("Price of the service (ex. '3.00'): ")
+        while true
+          if service_price != nil
+            break
+          else
+            puts "Error: Not a valid service price name. Please enter a valid service price below. "
+            service_price = prompt.ask("Price of the service (ex. '3.00'): ")
+          end
+        end
+
         service_duration = prompt.ask("Duration of the service (in hours): ")
+        while true
+          if service_duration != nil
+            break
+          else
+            puts "Error: Not a valid service duration. Please enter a valid service duration below. "
+            service_duration = prompt.ask("Duration of the service (in hours): ")
+          end
+        end
 
         @services.push(Service.new(service_name, service_price, service_duration))
         puts "The #{service_name} service has been created!"
@@ -92,6 +100,14 @@ class Organization
     def add_service_provider()
       prompt = TTY::Prompt.new
       service_provider_name = prompt.ask("Name of the service provider: ")
+      while true
+        if service_provider_name != nil
+          break
+        else
+          puts "Error: Not a valid service duration. Please enter a valid service duration below. "
+          service_provider_name = prompt.ask("Name of the service provider: ")
+        end
+      end
 
       if(service_provider_already_exists?(service_provider_name))
         puts "Service Provider already exists"
@@ -100,6 +116,15 @@ class Organization
       end
 
       service_provider_number = prompt.ask("Service provider phone number: ")
+      while true
+        if service_provider_number != nil
+          break
+        else
+          puts "Error: Not a valid service duration. Please enter a valid service duration below. "
+          service_provider_number = prompt.ask("Service provider phone number: ")
+        end
+      end
+
 
       available_service_names = prompt.multi_select("Which services can #{service_provider_name} provide?:", get_service_choices())
       available_service_names_array = available_service_names
