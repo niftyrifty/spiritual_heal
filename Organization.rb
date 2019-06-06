@@ -28,6 +28,12 @@ class Organization
           end
         end
 
+        if (!service_name)
+          puts "Error: Service Must Have Name"
+          line_break()
+          return
+        end
+
         if(service_already_exists?(service_name))
           puts "Error: Service Already Exists"
           line_break()
@@ -109,6 +115,12 @@ class Organization
         end
       end
 
+      if (!service_provider_name)
+        puts "Error: Service Provider Must Have Name"
+        line_break()
+        return
+      end
+
       if(service_provider_already_exists?(service_provider_name))
         puts "Service Provider already exists"
         line_break()
@@ -188,7 +200,7 @@ class Organization
 
     def schedule_appointment()
       prompt = TTY::Prompt.new
-
+      client = prompt.ask("Client name: ")
       service_provider_name = prompt.select("Choose a service provider:", get_service_providers_array())
       service_provider = get_service_provider_by_name(service_provider_name)
 
@@ -202,6 +214,11 @@ class Organization
       end
 
       day, month, year = get_date_response(true)
+
+      if (!day || !month || !year)
+        return
+      end
+
       start_hour, start_minute = get_time_response(true)
 
       if(start_hour == nil || start_minute == nil)
@@ -212,6 +229,7 @@ class Organization
 
       appointment_time = Time.new(year, month, day, start_hour, start_minute)
       is_recurring = get_recurring_response()
+
       client = prompt.ask("Client name: ")
       while true
         if client != nil
@@ -221,6 +239,7 @@ class Organization
           client = prompt.ask("Client name: ")
         end
       end
+
 
       if(service_provider.timeslot_is_available?(appointment_time, service.duration, is_recurring))
         appt = Appointment.new(appointment_time, service, client, is_recurring)
@@ -261,6 +280,11 @@ class Organization
       end
 
       day, month, year = get_date_response(false)
+
+      if (!day || !month || !year)
+        return
+      end
+
       time = Time.new(year, month, day)
 
       if (service_provider.appointments.length == 0)
@@ -292,6 +316,11 @@ class Organization
       end
 
       day, month, year = get_date_response(true)
+
+      if (!day || !month || !year)
+        return
+      end
+
       start_hour, start_minute = get_time_response(false)
 
       if(start_hour == nil || start_minute == nil)
@@ -413,28 +442,87 @@ class Organization
     def get_date_response(view_sched)
       prompt = TTY::Prompt.new
       if (!view_sched)
-        month = prompt.ask("Month of appointment(ex. '4'): ")
+
+#         month = prompt.ask("Month of appointment (ex. '4'): ")
+#         if (month.to_i < 1 || month.to_i > 12 || !month)
+#           puts "Error: Invalid Month"
+#           line_break()
+#           return
+#         end
+#         day = prompt.ask("Day of appointment: ")
+#         if (day.to_i < 1 || day.to_i > 31 || !day)
+#           puts "Error: Invalid Day"
+#           line_break()
+#           return
+#         end
+#         year = prompt.ask("Year of appointment: ")
+#         if (!year)
+#           puts "Error: Invalid Year"
+#           line_break()
+#           return
+#         end
+#       else
+        month = prompt.ask("Month (ex. '4'): ")
+      
         while true
           if month != nil
             break
+          elsif  (month.to_i < 1 || month.to_i > 12 || !month)
+            puts "Error: Invalid Month"
+            line_break()
+            month = prompt.ask("Month of appointment (ex. '4'): ")
           else
             puts "Error: Not a valid month. Please enter a valid month below. "
             month = prompt.ask("Month of appointment (ex. '4'): ")
           end
         end
+        
+#         if (month.to_i < 1 || month.to_i > 12 || !month)
+#           puts "Error: Invalid Month"
+#           line_break()
+#           return
+#         end
+#         day = prompt.ask("Day: ")
+#         if (day.to_i < 1 || day.to_i > 31 || !day)
+#           puts "Error: Invalid Day"
+#           line_break()
+#           return
+#         end
+#         year = prompt.ask("Year: ")
+#         if (year.to_i < 2019 || !year)
+#           puts "Error: Invalid Year"
+#           line_break()
+#           return
+
+        
         day = prompt.ask("Date of appointment: ")
         while true
           if day != nil
             break
+          elsif (day.to_i < 1 || day.to_i > 31 || !day)
+            puts "Error: Invalid Day"
+            line_break()
+            day = prompt.ask("Date of appointment: ")
           else
             puts "Error: Not a valid day. Please enter a valid day below. "
             day = prompt.ask("Date of appointment : ")
           end
         end
+        
+     
+        
+        
+        
+        
         year = prompt.ask("Year of appointment : ")
         while true
           if year != nil
             break
+            
+          elsif  (year.to_i < 2019 || !year)
+            puts "Error: Invalid Year"
+            line_break()
+            year = prompt.ask("Year of appointment : ")
           else
             puts "Error: Not a valid year. Please enter a valid year below. "
             year = prompt.ask("Year of appointment : ")
@@ -442,30 +530,46 @@ class Organization
         end
       else
         month = prompt.ask("Month (ex. '4'): ")
+      
         while true
           if month != nil
             break
+          elsif  (month.to_i < 1 || month.to_i > 12 || !month)
+            puts "Error: Invalid Month"
+            line_break()
+            month = prompt.ask("Month of appointment (ex. '4'): ")
           else
             puts "Error: Not a valid month. Please enter a valid month below. "
-            month = prompt.ask("Month (ex. '4'): ")
+            month = prompt.ask("Month of appointment (ex. '4'): ")
           end
         end
-        day = prompt.ask("Date: ")
+        
+        day = prompt.ask("Date of appointment: ")
         while true
           if day != nil
             break
+          elsif (day.to_i < 1 || day.to_i > 31 || !day)
+            puts "Error: Invalid Day"
+            line_break()
+            day = prompt.ask("Date of appointment: ")
           else
             puts "Error: Not a valid day. Please enter a valid day below. "
-            day = prompt.ask("Date: ")
+            day = prompt.ask("Date of appointment : ")
           end
         end
-        year = prompt.ask("Year: ")
+        
+        year = prompt.ask("Year of appointment : ")
         while true
           if year != nil
             break
+            
+          elsif  (year.to_i < 2019 || !year)
+            puts "Error: Invalid Year"
+            line_break()
+            year = prompt.ask("Year of appointment : ")
           else
             puts "Error: Not a valid year. Please enter a valid year below. "
-            year = prompt.ask("Year: ")
+            year = prompt.ask("Year of appointment : ")
           end
         end
       end
