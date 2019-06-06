@@ -39,7 +39,7 @@ class Organization
           if service_price != nil
             break
           else
-            puts "Error: Not a valid service price name. Please enter a valid service price below. "
+            puts "Error: Not a valid service price. Please enter a valid service price below. "
             service_price = prompt.ask("Price of the service (ex. '3.00'): ")
           end
         end
@@ -104,7 +104,7 @@ class Organization
         if service_provider_name != nil
           break
         else
-          puts "Error: Not a valid service duration. Please enter a valid service duration below. "
+          puts "Error: Not a valid service provider name. Please enter a valid service provider name below. "
           service_provider_name = prompt.ask("Name of the service provider: ")
         end
       end
@@ -120,7 +120,7 @@ class Organization
         if service_provider_number != nil
           break
         else
-          puts "Error: Not a valid service duration. Please enter a valid service duration below. "
+          puts "Error: Not a valid service provider number. Please enter a valid service provider number below. "
           service_provider_number = prompt.ask("Service provider phone number: ")
         end
       end
@@ -480,7 +480,7 @@ class Organization
           if time_string != nil
             break
           else
-            puts "Error: Not a valid service duration. Please enter a valid service duration below. "
+            puts "Error: Not a valid time. Please enter a valid time below. "
             time_string = prompt.ask("Time of appointment (ex. '14:45'): ")
           end
         end
