@@ -230,15 +230,15 @@ class Organization
       appointment_time = Time.new(year, month, day, start_hour, start_minute)
       is_recurring = get_recurring_response()
 
-      client = prompt.ask("Client name: ")
-      while true
-        if client != nil
-          break
-        else
-          puts "Error: Not a valid name. Please enter a valid name below. "
-          client = prompt.ask("Client name: ")
-        end
-      end
+      # client = prompt.ask("Client name: ")
+      # while true
+      #   if client != nil
+      #     break
+      #   else
+      #     puts "Error: Not a valid name. Please enter a valid name below. "
+      #     client = prompt.ask("Client name: ")
+      #   end
+      # end
 
 
       if(service_provider.timeslot_is_available?(appointment_time, service.duration, is_recurring))
@@ -427,7 +427,7 @@ class Organization
       return nil
     end
 
-    def get_recurring_response()
+    def get_recurring_response
       prompt = TTY::Prompt.new
       is_recurring_response = prompt.ask("Appointment recurs weekly? (y/n): ")
 
@@ -471,9 +471,9 @@ class Organization
             puts "Error: Invalid Month"
             line_break()
             month = prompt.ask("Month of appointment (ex. '4'): ")
-          else
-            puts "Error: Not a valid month. Please enter a valid month below. "
-            month = prompt.ask("Month of appointment (ex. '4'): ")
+          # else
+          #   puts "Error: Not a valid month. Please enter a valid month below. "
+          #   month = prompt.ask("Month of appointment (ex. '4'): ")
           end
         end
         
@@ -503,9 +503,9 @@ class Organization
             puts "Error: Invalid Day"
             line_break()
             day = prompt.ask("Date of appointment: ")
-          else
-            puts "Error: Not a valid day. Please enter a valid day below. "
-            day = prompt.ask("Date of appointment : ")
+          # else
+          #   puts "Error: Not a valid day. Please enter a valid day below. "
+          #   day = prompt.ask("Date of appointment : ")
           end
         end
         
@@ -523,9 +523,9 @@ class Organization
             puts "Error: Invalid Year"
             line_break()
             year = prompt.ask("Year of appointment : ")
-          else
-            puts "Error: Not a valid year. Please enter a valid year below. "
-            year = prompt.ask("Year of appointment : ")
+          # else
+          #   puts "Error: Not a valid year. Please enter a valid year below. "
+          #   year = prompt.ask("Year of appointment : ")
           end
         end
       else
@@ -538,9 +538,9 @@ class Organization
             puts "Error: Invalid Month"
             line_break()
             month = prompt.ask("Month of appointment (ex. '4'): ")
-          else
-            puts "Error: Not a valid month. Please enter a valid month below. "
-            month = prompt.ask("Month of appointment (ex. '4'): ")
+          # else
+          #   puts "Error: Not a valid month. Please enter a valid month below. "
+          #   month = prompt.ask("Month of appointment (ex. '4'): ")
           end
         end
         
@@ -552,9 +552,9 @@ class Organization
             puts "Error: Invalid Day"
             line_break()
             day = prompt.ask("Date of appointment: ")
-          else
-            puts "Error: Not a valid day. Please enter a valid day below. "
-            day = prompt.ask("Date of appointment : ")
+          # else
+          #   puts "Error: Not a valid day. Please enter a valid day below. "
+          #   day = prompt.ask("Date of appointment : ")
           end
         end
         
@@ -567,9 +567,9 @@ class Organization
             puts "Error: Invalid Year"
             line_break()
             year = prompt.ask("Year of appointment : ")
-          else
-            puts "Error: Not a valid year. Please enter a valid year below. "
-            year = prompt.ask("Year of appointment : ")
+          # else
+          #   puts "Error: Not a valid year. Please enter a valid year below. "
+          #   year = prompt.ask("Year of appointment : ")
           end
         end
       end
