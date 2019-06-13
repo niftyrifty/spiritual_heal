@@ -1,14 +1,14 @@
+require_relative 'Service'
 require_relative 'ServiceProvider'
 require_relative 'Organization'
 
 RSpec.describe ServiceProvider do
   describe '#initialize' do
     it 'initializes each instance of ServiceProvider' do
-      service_provider = ServiceProvider.new('Provider', 1231111111, ['Gaming', 'Swimming'], )
+      service_provider = ServiceProvider.new('Provider', 1231111111, ['Massages'])
       expect(service_provider.name).to eq('Provider')
       expect(service_provider.number).to eq(1231111111)
-      expect(service_provider.services[0]).to eq('Gaming')
-      expect(service_provider.services[1]).to eq('Swimming')
+      expect(service_provider.services[0]).to eq('Massages')
     end
   end
   describe '#list_service_providers' do

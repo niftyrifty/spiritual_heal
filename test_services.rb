@@ -1,6 +1,8 @@
 require_relative 'Service'
 require_relative 'Organization'
 
+#Goal: Take one specific and write a test for an action 
+
 RSpec.describe Service do
   describe '#initialize' do
     it 'initializes each instance of Service' do
