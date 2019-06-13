@@ -3,16 +3,16 @@ require_relative 'Separate'
 
 class Interface
 
-    @name
-    @services
-    @service_providers
-
-    def initialize(prompt)
+    def initialize(input_strategy)
         @services = Array.new
         @service_providers = Array.new
-        @name = prompt.ask("Name of the organization: ")
+        @name = input_strategy.ask("Name of the organization: ")
         puts "\nThe #{@name} organization has been created!\n"
         line_break()
+    end
+
+    def run(commands)
+
     end
 
     def add_service()

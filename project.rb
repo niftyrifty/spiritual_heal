@@ -6,10 +6,19 @@ require_relative "Service"
 require_relative "ServiceProvider"
 require_relative "AvailabilityBlock"
 
+class PromptInputStrategy 
+    def initialize()
+        @prompt = TTY::Prompt.new(interrupt: :exit)
+    end
+
+    def ask(text)
+        @prompt.ask(text)
+    end
+end
 
 #prompt = TTY::Prompt.new(active_color: :cyan)
 prompt = TTY::Prompt.new(interrupt: :exit)
-interface = Interface.new(prompt)
+interface = Interface.new(PromptInputStrategy.new())
 
 
 commands = ["Add service", "Add service provider", "Remove service", "Remove service provider", 
