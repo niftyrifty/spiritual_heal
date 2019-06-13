@@ -1,7 +1,7 @@
 require 'tty-prompt'
 require_relative 'Separate'
 
-class Organization
+class Interface
 
     @name
     @services
@@ -349,7 +349,7 @@ class Organization
 
     def list_commands()
 
-      return ((Organization.public_instance_methods - Object.public_instance_methods).sort)
+      return ((Interface.public_instance_methods - Object.public_instance_methods).sort)
 
     end
 
