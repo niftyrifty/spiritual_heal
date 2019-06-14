@@ -1,6 +1,9 @@
 require_relative 'Service'
 require_relative 'Interface'
 require 'pry'
+require 'simplecov'
+
+SimpleCov.start
 
 #Goal: Take one specific and write a test for an action 
 class CommandScriptInputStrategy
@@ -38,7 +41,7 @@ RSpec.describe Service do
   #expect(list_services()).to incl
       interface = Interface.new(CommandScriptInputStrategy.new(commands))
       interface.run()
-
+      
       # expect(Service.find(name: 'Massage').name).to eq('Massage')
     end
   end

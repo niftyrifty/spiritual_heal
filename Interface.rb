@@ -54,16 +54,6 @@ class Interface
 
     end
 
-    
-
-
-
-
-
-
-
-
-
 
     def add_service()
         prompt = TTY::Prompt.new

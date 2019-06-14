@@ -6,4 +6,5 @@ class Service
         @price = price
         @duration = duration
     end
+    
 end
