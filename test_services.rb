@@ -4,12 +4,22 @@ require 'pry'
 
 #Goal: Take one specific and write a test for an action 
 class CommandScriptInputStrategy
+  
   def initialize(commands)
+    @count = 0
     @commands = commands
   end
 
   def ask(text)
-    @commands[0][text]
+    value = @commands[@count][text]
+    @count+=1
+    value
+  end
+
+  def select(text, commands, options)
+    value = @commands[@count][text]
+    @count+=1
+    value
   end
 end
 
@@ -27,7 +37,9 @@ RSpec.describe Service do
   #Assert that the massage exists
   #expect(list_services()).to incl
       interface = Interface.new(CommandScriptInputStrategy.new(commands))
-      interface.run(commands)
+      interface.run()
+
+      # expect(Service.find(name: 'Massage').name).to eq('Massage')
     end
   end
 end

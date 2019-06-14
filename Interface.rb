@@ -4,6 +4,7 @@ require_relative 'Separate'
 class Interface
 
     def initialize(input_strategy)
+        @input_strategy = input_strategy
         @services = Array.new
         @service_providers = Array.new
         @name = input_strategy.ask("Name of the organization: ")
@@ -11,20 +12,69 @@ class Interface
         line_break()
     end
 
-    def run(commands)
+    def run()
+      commands = ["Add service", "Add service provider", "Remove service", "Remove service provider", 
+                  "List services", "List service providers", "Schedule appointment", "List appointments", 
+                  "Schedule time off", "View schedule"]
+
+      # response = (prompt.select("Choose a command...", interface.list_commands())).to_s()
+      response = (@input_strategy.select("Please choose a command... (press 'control-c' to quit)", commands, per_page: 10)).to_s()
+
+      interface = self 
+
+      while (response != "close")
+          case response
+          when "Add service"
+              interface.add_service()
+          when "Remove service"
+              interface.remove_service()
+          when "List services"
+              interface.list_services()
+          when "Add service provider"
+              interface.add_service_provider()
+          when "Remove service provider"
+              interface.remove_service_provider()
+          when "List service providers"
+              interface.list_service_providers()
+          when "Schedule appointment"
+              interface.schedule_appointment()
+          when "List appointments"
+              interface.list_appointments()
+          when "Schedule time off"
+              interface.schedule_availability_block()
+          when "View schedule"
+              interface.view_schedule()
+          else
+              puts "Error: \nInvalid command!\n"
+              interface.list_commands()
+          end
+
+          response = (@input_strategy.select("Choose a command...", commands, per_page: 10)).to_s()
+      end
 
     end
+
+    
+
+
+
+
+
+
+
+
+
 
     def add_service()
         prompt = TTY::Prompt.new
 
-        service_name = prompt.ask("Name of the service: ")
+        service_name = @input_strategy.ask("Name of the service: ")
         while true
           if service_name != nil
             break
           else
             puts "Error: Not a valid service name. Please enter a valid service below. "
-            service_name = prompt.ask("Name of the service: ")
+            service_name = @input_strategy.ask("Name of the service: ")
           end
         end
 
@@ -40,23 +90,23 @@ class Interface
           return
         end
 
-        service_price = prompt.ask("Price of the service (ex. '3.00'): ")
+        service_price = @input_strategy.ask("Price of the service (ex. '3.00'): ")
         while true
           if service_price != nil
             break
           else
             puts "Error: Not a valid service price. Please enter a valid service price below. "
-            service_price = prompt.ask("Price of the service (ex. '3.00'): ")
+            service_price = @input_strategy.ask("Price of the service (ex. '3.00'): ")
           end
         end
 
-        service_duration = prompt.ask("Duration of the service (in hours): ")
+        service_duration = @input_strategy.ask("Duration of the service (in hours): ")
         while true
           if service_duration != nil
             break
           else
             puts "Error: Not a valid service duration. Please enter a valid service duration below. "
-            service_duration = prompt.ask("Duration of the service (in hours): ")
+            service_duration = @input_strategy.ask("Duration of the service (in hours): ")
           end
         end
 
